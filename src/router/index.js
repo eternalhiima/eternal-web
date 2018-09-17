@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Home from '@/pages/Home.vue'
 import Random from '@/pages/Random.vue'
 import Ranking from '@/pages/Ranking.vue'
+// Test
+import HelloWorld from '@/pages/HelloTest.vue'
 
 Vue.use(Router)
 
@@ -22,6 +24,11 @@ export default new Router({
       path: '/ranking',
       name: 'Ranking',
       component: Ranking
+    },
+    {
+      path: '/hello',
+      name: 'HelloWorld',
+      component: HelloWorld
     }
   ]
 })
