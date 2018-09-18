@@ -1,6 +1,10 @@
 import axios from 'axios'
 
 const debug = process.env.NODE_ENV !== 'production'
+/**
+ * TODO: devとproduction環境用のConfigを作成し、読み込んでパスを開発環境と商用環境で切り替えれるようにする
+ */
+const serverIP = 'http://localhost:8090/'
 
 const onSuccess = (resp) => {
   if (debug) {
@@ -8,33 +12,41 @@ const onSuccess = (resp) => {
   }
   return Promise.resolve(resp.data)
 }
+
 const onError = () => {
   throw new Error('API error.')
 }
 
+const createURL = (path) => {
+  return serverIP + path
+}
+
+/**
+ * @return Promise
+ */
 export default {
-  get: (url, params) => {
+  get: (path, params) => {
     if (debug) {
-      console.log('GET ' + url + ' >> ' + JSON.stringify(params))
+      console.log('GET ' + createURL(path) + ' >> ' + JSON.stringify(params))
     }
-    return axios.get(url, { params: params }).then(onSuccess).catch(onError)
+    return axios.get(createURL(path), { params: params }).then(onSuccess).catch(onError)
   },
-  post: (url, params) => {
+  post: (path, params) => {
     if (debug) {
-      console.log('POST ' + url + ' >> ' + JSON.stringify(params))
+      console.log('POST ' + createURL(path) + ' >> ' + JSON.stringify(params))
     }
-    return axios.post(url, params).then(onSuccess).catch(onError)
+    return axios.post(createURL(path), params).then(onSuccess).catch(onError)
   },
-  put: (url, params) => {
+  put: (path, params) => {
     if (debug) {
-      console.log('PUT ' + url + ' >> ' + JSON.stringify(params))
+      console.log('PUT ' + createURL(path) + ' >> ' + JSON.stringify(params))
     }
-    return axios.put(url, params).then(onSuccess).catch(onError)
+    return axios.put(createURL(path), params).then(onSuccess).catch(onError)
   },
-  delete: (url, params) => {
+  delete: (path, params) => {
     if (debug) {
-      console.log('DELETE ' + url + ' >> ' + JSON.stringify(params))
+      console.log('DELETE ' + createURL(path) + ' >> ' + JSON.stringify(params))
     }
-    return axios.delete(url, { params: params }).then(onSuccess).catch(onError)
+    return axios.delete(createURL(path), { params: params }).then(onSuccess).catch(onError)
   }
 }
