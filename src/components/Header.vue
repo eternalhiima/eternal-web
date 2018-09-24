@@ -1,18 +1,14 @@
 <template lang="html">
   <div id="header">
-  <b-navbar toggleable="md" type="dark" variant="primary">
+  <b-navbar class="global-navbar" toggleable="md" type="light" variant="light">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
-<router-link to="/" class="text-light nav-item">
-  <b-navbar-brand class="logo" tag="h1">hiima</b-navbar-brand>
-</router-link>
+  <b-navbar-brand to="/" tag="h1">
+    <img class="logo" src="../../static/images/logo.png" alt="hiima">
+  </b-navbar-brand>
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>
-      <b-nav-item>
-        <router-link to="/ranking" class="text-light nav-item">RANKING</router-link>
-      </b-nav-item>
-      <b-nav-item>
-        <router-link to="/random" class="text-light nav-item">RANDOM</router-link>
-      </b-nav-item>
+      <b-nav-item to="/random">RANDOM</b-nav-item>
+      <b-nav-item to="/ranking">RANKING</b-nav-item>
     </b-navbar-nav>
 
     <!-- Right aligned nav items -->
@@ -46,19 +42,12 @@ export default {
 </script>
 
 <style lang="less">
-// TODO:デザインがいけてないから修正する。infoの青色うざい。。
-@font-face {
-  font-family: 'logo';
-  font-style: normal;
-  font-weight: 600;
-  src :url('../../static/fonts/GamjaFlower-Regular.ttf');
+.global-navbar {
+  height: 64px;
 }
 .logo {
-  font-family: 'logo';
-  font-size: 2.5rem;
-  padding: none;
+  width: 68px;
+  height: 68px;
 }
-.nav-item:hover {
-  text-decoration: none;
-}
+
 </style>

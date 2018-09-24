@@ -6,7 +6,7 @@
     <p>{{ helloJson }}</p>
     <h2>Jsonを加工</h2>
     <ul id="names">
-      <li v-for="name in helloJson">
+      <li v-for="name in helloJson" :key="name">
         {{ name }}
       </li>
     </ul>
