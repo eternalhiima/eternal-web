@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/pages/Home.vue'
-import Random from '@/pages/Random.vue'
-import Ranking from '@/pages/Ranking.vue'
+import Home from '@/main/js/pages/Home.vue'
+import Random from '@/main/js/pages/Random.vue'
+import Ranking from '@/main/js/pages/Ranking.vue'
 // Test
-import HelloWorld from '@/pages/HelloTest.vue'
+import HelloWorld from '@/main/js/pages/HelloTest.vue'
 
 Vue.use(Router)
 

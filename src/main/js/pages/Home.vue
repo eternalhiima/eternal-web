@@ -1,15 +1,15 @@
 <template lang="html">
-  <div id="ranking">
+  <div id="home">
     <global-header></global-header>
-    <p>Ranking</p>
+    <p>HOME</p>
   </div>
 </template>
 
 <script>
-import GlobalHeader from '../components/Header.vue'
+import GlobalHeader from '@/main/js/components/Header.vue'
 
 export default {
-  name: 'Ranking',
+  name: 'Home',
   components: {
     globalHeader: GlobalHeader
   }
