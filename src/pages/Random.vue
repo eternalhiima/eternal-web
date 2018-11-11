@@ -23,14 +23,16 @@
     </div>
 
     <!-- range -->
-    <b-form-input id="levelInput3"
-                  class="w-50 mx-auto"
-                  v-model="text1"
-                  type="range"
-                  placeholder="Enter your name"
-                  v-b-tooltip.hover title="select level!">
-
-    </b-form-input>
+    <div id="levelRange"
+         class="text-center">
+      <label class="w-50">
+        <input class="w-100"
+               v-model="text1"
+               min="0" max="4"
+               v-b-popover.hover.right="'Select Level!'"
+               type="range"/>
+      </label>
+    </div>
 
     <!-- talk button -->
     <div id="talkButton"
