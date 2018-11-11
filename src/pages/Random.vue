@@ -49,26 +49,29 @@
 </template>
 
 <script>
-  import GlobalHeader from '../components/Header.vue'
+import GlobalHeader from '../components/Header.vue'
 
-  export default {
-    data() {
-      return {
-        form: {
-          food: null
-        },
-        genre: [
-          {text: 'Select a genre', value: null},
-          'life', 'love', 'work', 'other'
-        ],
-        text1: '50'
-      }
-    },
-    name: 'Random',
-    components: {
-      globalHeader: GlobalHeader
+export default {
+  data () {
+    return {
+      form: {
+        food: null
+      },
+      // TODO:マスタ化
+      genre: [
+        {text: 'Select a genre', value: null},
+        'life', 'love', 'work', 'other'
+      ],
+      // TODO:マスタ化
+      levels: ['下ネタ', 'カジュアル', '普通', 'フォーマル', '知的'],
+      text1: '2'
     }
+  },
+  name: 'Random',
+  components: {
+    globalHeader: GlobalHeader
   }
+}
 </script>
 
 <style lang="less">
