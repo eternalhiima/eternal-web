@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import GlobalHeader from '../components/Header.vue'
+import GlobalHeader from '@/main/js/components/Header.vue'
 
 export default {
   data () {
