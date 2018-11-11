@@ -7,16 +7,16 @@
         <!-- 総合ランキングは常にトップに表示 -->
         <b-link class="listItem">総合ランキング</b-link>
       </li>
-      <li v-for="item in talkThemeList" v-bind:key="item" class="listItem">
+      <li v-for="item in popularRankingList" v-bind:key="item" class="listItem">
         <b-link>{{ item }}</b-link>
       </li>
     </ul>
-    <b-container>
+    <b-container fluid>
       <b-row class="my-1">
-        <b-col class="col-md-5">
+        <b-col md="5">
           <p>カテゴリ：</p>
         </b-col>
-        <b-col class="col-md-7 col-sm-10">
+        <b-col sm="10" md="7">
           <b-form-select v-model="selectedCategory" :options="categoryList" :select-size="1"></b-form-select>
         </b-col>
       </b-row>
@@ -25,7 +25,7 @@
           <b-button variant="primary">表示</b-button>
         </b-col>
       </b-row>
-  </b-container>
+    </b-container>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
   data () {
     return {
       // TODO:人気のトークテーマリストはRef001_トークテーマ一覧取得より取得
-      talkThemeList: ['人気のトークテーマ', '人気のトークテーマ', '人気のトークテーマ', '人気のトークテーマ'],
+      popularRankingList: ['人気のトークテーマ', '人気のトークテーマ', '人気のトークテーマ', '人気のトークテーマ'],
       selectedCategory: null,
       // TODO:カテゴリのリストはRef003_トークテーマジャンル一覧取得より取得
       categoryList: ['カテゴリ1', 'カテゴリ2', 'カテゴリ3', 'カテゴリ4', 'カテゴリ5', 'カテゴリ6']
