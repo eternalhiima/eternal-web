@@ -14,8 +14,8 @@
   </template>
 
 <script>
-import GlobalHeader from '../components/Header.vue'
-import api from '../api/Api.js'
+import GlobalHeader from '@/main/js/components/Header.vue'
+import api from '@/main/js/api/Api.js'
 
 export default {
   data () {
