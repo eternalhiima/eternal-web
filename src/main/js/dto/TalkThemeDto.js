@@ -14,6 +14,7 @@ export default class TalkThemeDto {
     this.talkedCount = talkedCount
     this.relatedCategoryList = relatedCategoryList
     this.postedUser = postedUser
+    /** yyyyMMddHHmm形式 */
     this.postedDateTime = postedDateTime
   }
 
