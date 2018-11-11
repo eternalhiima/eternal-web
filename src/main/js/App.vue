@@ -10,5 +10,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
+/** 共通Lessのインポート */
+@import "./../../resources/static/less/base";
 </style>

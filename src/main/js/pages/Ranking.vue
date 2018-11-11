@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="ranking">
     <global-header></global-header>
-    <search-condition-area class="w-25 ml-3 mt-4"></search-condition-area>
+    <search-condition-area class="searchConditionArea ml-3 mt-4"></search-condition-area>
   </div>
 </template>
 
@@ -18,8 +18,10 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-/** 共通Lessのインポート */
-@import "./../../../resources/static/less/base";
+<style lang="less">
 
+.searchConditionArea {
+  width: 320px;
+  height: 380px;
+}
 </style>
