@@ -3,24 +3,45 @@
     <global-header></global-header>
 
     <!-- genre select box -->
-    <b-form-select id="genreInput3"
-                   :options="genre"
-                   required
-                   v-model="form.food">
-    </b-form-select>
+    <div id="genreSelect"
+         class="text-center">
+      <b-form-select id="genreInput"
+                     class="w-50 m-3"
+                     :options="genre"
+                     required
+                     v-model="form.food"
+                     v-b-tooltip.hover title="select a genre!">
+      </b-form-select>
+    </div>
 
     <!-- talk level -->
-    <p>Value: {{ text1 }}</p>
+    <div id="talkLevel"
+         class="text-center">
+      <p class="m-3">
+        Level: {{ text1 }}
+      </p>
+    </div>
 
     <!-- range -->
     <b-form-input id="levelInput3"
+                  class="w-50 mx-auto"
                   v-model="text1"
                   type="range"
-                  placeholder="Enter your name"></b-form-input>
+                  placeholder="Enter your name"
+                  v-b-tooltip.hover title="select level!">
+
+    </b-form-input>
+
     <!-- talk button -->
-    <b-button size="lg" variant="primary">
-      Let's talk
-    </b-button>
+    <div id="talkButton"
+         class="text-center">
+      <b-button size="lg"
+                class="m-3"
+                variant="primary"
+                v-b-tooltip.hover title="Start talking!">
+        Let's talk
+      </b-button>
+    </div>
 
   </div>
 </template>
@@ -49,4 +70,5 @@
 </script>
 
 <style lang="less">
+  /* temp css */
 </style>
