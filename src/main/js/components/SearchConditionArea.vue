@@ -7,8 +7,8 @@
         <!-- 総合ランキングは常にトップに表示 -->
         <b-link class="listItem">総合ランキング</b-link>
       </li>
-      <li v-for="item in popularRankingList" v-bind:key="item" class="listItem">
-        <b-link>{{ item }}</b-link>
+      <li v-for="item in popularRankingList" v-bind:key="item.name">
+        <b-link>{{ item.name }}</b-link>
       </li>
     </ul>
     <b-container fluid>
@@ -35,7 +35,11 @@ export default {
   data () {
     return {
       // TODO:人気のトークテーマリストはRef001_トークテーマ一覧取得より取得
-      popularRankingList: ['人気のトークテーマ', '人気のトークテーマ', '人気のトークテーマ', '人気のトークテーマ'],
+      popularRankingList: [
+        {name: '人気のトークテーマ'},
+        {name: '人気のトークテーマ'},
+        {name: '人気のトークテーマ'},
+        {name: '人気のトークテーマ'}],
       selectedCategory: null,
       // TODO:カテゴリのリストはRef003_トークテーマジャンル一覧取得より取得
       categoryList: ['カテゴリ1', 'カテゴリ2', 'カテゴリ3', 'カテゴリ4', 'カテゴリ5', 'カテゴリ6']

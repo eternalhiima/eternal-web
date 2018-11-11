@@ -1,10 +1,14 @@
-class TalkThemeDto {
+/**
+ * TalkThemeDto
+ */
+export default class TalkThemeDto {
 
-  constructor(id, title, description, goodCount, badCount, talkedCount,
-    relatedCategoryList, postedUser, postedDateTime) {
+  constructor (id, title, description, thumbnailUrl, goodCount, badCount,
+    talkedCount, relatedCategoryList, postedUser, postedDateTime) {
     this.id = id
     this.title = title
     this.description = description
+    this.thumbnailUrl = thumbnailUrl
     this.goodCount = goodCount
     this.badCount = badCount
     this.talkedCount = talkedCount
@@ -13,59 +17,83 @@ class TalkThemeDto {
     this.postedDateTime = postedDateTime
   }
 
-  get Id() {
-    return id
-  }
-  set Id(id) {
-    this.id = id
-  }
-  get Title() {
-    return title
-  }
-  set Title(title) {
-    this.title = title
-  }
-  get Description() {
-    return description
-  }
-  set Description(description) {
-    this.description = description
-  }
-  get GoodCount() {
-    return goodCount
-  }
-  set GoodCount(goodCount) {
-    this.goodCount = goodCount
-  }
-  get BadCount() {
-    return badCount
-  }
-  set BadCount(badCount) {
-    this.badCount = badCount
-  }
-  get TalkedCount() {
-    return talkedCount
-  }
-  set TalkedCount(talkedCount) {
-    this.talkedCount = talkedCount
-  }
-  get RelatedCategoryList() {
-    return relatedCategoryList
-  }
-  set RelatedCategoryList(relatedCategoryList) {
-    this.relatedCategoryList = relatedCategoryList
-  }
-  get PostedUser() {
-    return postedUser
-  }
-  set PostedUser(postedUser) {
-    this.postedUser = postedUser
-  }
-  get PostedDateTime() {
-    return postedDateTime
-  }
-  set PostedDateTime(postedDateTime) {
-    this.postedDateTime = postedDateTime
+  get id () {
+    return this._id
   }
 
+  set id (val) {
+    this._id = val
+  }
+
+  get title () {
+    return this._title
+  }
+
+  set title (val) {
+    this._title = val
+  }
+
+  get description () {
+    return this._description
+  }
+
+  set description (val) {
+    this._description = val
+  }
+
+  get thumbnailUrl () {
+    return this._thumbnailUrl
+  }
+
+  set thumbnailUrl (val) {
+    this._thumbnailUrl = val
+  }
+
+  get goodCount () {
+    return this._goodCount
+  }
+
+  set goodCount (val) {
+    this._goodCount = val
+  }
+
+  get badCount () {
+    return this._badCount
+  }
+
+  set badCount (val) {
+    this._badCount = val
+  }
+
+  get talkedCount () {
+    return this._talkedCount
+  }
+
+  set talkedCount (val) {
+    this._talkedCount = val
+  }
+
+  get relatedCategoryList () {
+    return this._relatedCategoryList
+  }
+
+  set relatedCategoryList (val) {
+    this._relatedCategoryList = val
+  }
+
+  get postedUser () {
+    return this._postedUser
+  }
+
+  set postedUser (val) {
+    this._postedUser = val
+  }
+
+  get postedDateTime () {
+    return this._postedDateTime
+  }
+
+  set postedDateTime (val) {
+    this._postedDateTime = val
+  }
 }

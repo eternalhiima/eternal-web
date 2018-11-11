@@ -3,7 +3,7 @@
   <b-navbar class="global-navbar" toggleable="md" type="light" variant="light">
   <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
   <b-navbar-brand to="/" tag="h1">
-    <img class="logo" src="@/resources/static/images/logo.png" alt="hiima">
+    <img class="logo" src="@/resources/static/images/logo.png" alt="hiima" />
   </b-navbar-brand>
   <b-collapse is-nav id="nav_collapse">
     <b-navbar-nav>

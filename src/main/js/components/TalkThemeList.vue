@@ -1,17 +1,18 @@
-<template lang="html">
-  <div id="talkThemeList">
-    <p>TalkThemeList</p>
-    <ul>
-      <li v-for="talkTheme in talkThemeList" v-bind:key="talkTheme.id">
-        <talk-theme></talk-theme>
-      </li>
-    </ul>
+<template lang='html'>
+  <div id='talkThemeList'>
+    <ol>
+      <talk-theme v-for="talkTheme in talkThemeList" v-bind:key="talkTheme.id" :talkTheme="talkTheme"></talk-theme>
+    </ol>
   </div>
 </template>
 
 <script>
 import TalkTheme from '@/main/js/components/TalkTheme.vue'
-import TalkThemeDto from '@/main/js/dto/TalkThemeDto.js'
+import TalkThemeDto from '@/main/js/dto/TalkThemeDto'
+
+// テストデータの準備
+const talkTheme1 = new TalkThemeDto(1, 'タイトル1', 'hogehogehoge', 'thumbnail_sample1.png', 100, 50, 200, 'タグ1', 'fugaさん', '2018/11/11 12:00:000')
+const talkTheme2 = new TalkThemeDto(2, 'タイトル2', 'hogehogehoge', 'thumbnail_sample2.png', 100, 50, 200, 'タグ2', 'fugaさん', '2018/11/11 12:00:000')
 
 export default {
   name: 'talk-theme-list',
@@ -19,10 +20,13 @@ export default {
     talkTheme: TalkTheme
   },
   data () {
-    talkThemeList: []
+    return {
+      talkThemeList: [talkTheme1]
+    }
   }
 }
+
 </script>
 
-<style lang="less">
+<style lang='less'>
 </style>

@@ -6,10 +6,10 @@
         <b-col md="12" lg="3">
           <search-condition-area class="ml-3 mt-4" />
         </b-col>
-        <b-col md="12" lg="6">
-          <talk-theme-list />
+        <b-col md="12" lg="7">
+          <talk-theme-list class="mt-4"/>
         </b-col>
-        <b-col md="12" lg="3">
+        <b-col md="12" lg="2">
           <!-- TODO:広告エリア -->
           <div class="ad"></div>
         </b-col>
