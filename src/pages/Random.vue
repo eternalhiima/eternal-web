@@ -10,7 +10,7 @@
                      :options="genre"
                      required
                      v-model="form.food"
-                     v-b-tooltip.hover title="select a genre!">
+                     v-b-popover.hover.right="'Select a Genre!'">
       </b-form-select>
     </div>
 
@@ -18,7 +18,7 @@
     <div id="talkLevel"
          class="text-center">
       <p class="m-3">
-        Level: {{ text1 }}
+        {{ levels[text1] }}
       </p>
     </div>
 
@@ -40,7 +40,7 @@
       <b-button size="lg"
                 class="m-3"
                 variant="primary"
-                v-b-tooltip.hover title="Start talking!">
+                v-b-popover.hover.right="'Start Talking!'">
         Let's talk
       </b-button>
     </div>
