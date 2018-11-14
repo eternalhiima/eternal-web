@@ -1,5 +1,5 @@
 <template lang="html">
-  <div id="searchConditionArea" class="bg-light">
+  <div id="searchConditionArea" class="bg-light p-2">
     <h3 class="p-1 m-1">ランキング検索</h3>
     <p class="p-1 m-1">人気のトークテーマ</p>
     <ul>

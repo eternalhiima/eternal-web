@@ -21,7 +21,7 @@ export default {
   },
   data () {
     return {
-      talkThemeList: [talkTheme1, talkTheme2]
+      talkThemeList: [talkTheme1, talkTheme2, talkTheme1, talkTheme2, talkTheme1, talkTheme2, talkTheme1, talkTheme2, talkTheme1, talkTheme2, talkTheme1, talkTheme2]
     }
   }
 }

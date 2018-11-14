@@ -33,8 +33,8 @@
           </b-row>
           <b-row>
             <b-col>
-              <b-badge v-for="category in talkTheme.relatedCategoryList" v-bind:key="category.name" pill variant="light" class="mr-1">
-                <font-awesome-icon icon="tag" class="tag"/>{{ category.name }}
+              <b-badge pill variant="light" class="mr-1 text-muted" v-for="category in talkTheme.relatedCategoryList" v-bind:key="category.name">
+                <font-awesome-icon icon="tag" class="tag"/> {{ category.name }}
               </b-badge>
             </b-col>
           </b-row>
