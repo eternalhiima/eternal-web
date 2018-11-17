@@ -11,6 +11,14 @@
 - `/components`配下には各ページでのコンポーネント作成する
   - **TODO:`/components/global`や`/components/ranking`のようにディレクトリを作成して作ったほうがいい**
 
+### es6
+- jsを記述する際はes6で記述する
+  - letとconstによる変数宣言
+  - アロー関数
+  - テンプレート文字列
+  - class構文
+- [ES6入門](https://qiita.com/soarflat/items/b251caf9cb59b72beb9b)
+
 ### デザイン
 - Bootstrap-vueを使用し極力生のCSSは記述しない。
 - レスポンシブデザインを意識する。スマホ対応です。
@@ -19,23 +27,24 @@
 
 ### ルーティング
 - `/router/index.js`にルーティングを記述する
-- 画面遷移は`<router-link to="/{遷移先}"></router-link>`のタグを使用する
+- 画面遷移は`<b-link :to="{}"></b-link>`のタグを使用する
 
 ### 開発Tips
-- 参考となるページを随時記載する
+### 参考となるページを随時記載する
   - [Qiita - 2018年Vue.jsとVuexを使ってる人には必ず知っていてほしいドキュメントに書かれていないコンポーネントやストア、メンテナンスの際に役立つTips](https://qiita.com/k-okina/items/512b9e502f8db49981f3)
 - **TODO:ここがいっぱいになってきたらWikiへの移行を検討する**
 
 ## 使用する技術要素
 - [vue.js](https://jp.vuejs.org/)
 - [vue-rooter](https://router.vuejs.org/ja/)
-  - SPAぞ実現するためのルーティングに利用する
+  - SPAを実現するためのルーティングに利用する
 - [axios](https://github.com/axios/axios)
   - サーバーとのAPIに利用する
 - webpack
 - [bootstrap-vue](https://bootstrap-vue.js.org/)
 - [LESS](http://lesscss.org/)
-  - **TODO:SassはScssを使うかLessを使うか要検討。bootstrapがLessで親和性が良さそうなのでLessを現段階では使用する**
+- [vue-fab](https://www.npmjs.com/package/vue-fab)
+  - フローティングアクションボタンのUI
 
 ## Build Setup
 
