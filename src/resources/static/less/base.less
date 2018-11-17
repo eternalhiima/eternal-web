@@ -1,15 +1,37 @@
-/*
+@charset "UTF-8";
+/**
  * 共通のcss定義
  */
-html {
-  font-size: 62.5%;
-  font-family: "Meiryo";
-}
-/* clearfix用のレイアウト */
-.clearfix::after {
-  content: '';
-  display: block;
-  clear:both;
+// TODO:色を変数として定義する
+
+/** 文字スタイル定義 */
+.hi-text-title {
+  font-size: 1.6rem;
+  color: rgb(17, 17, 17);
+  margin: 0;
+  padding-top: 0.2px;
+  padding-bottom: 0.8px;
 }
 
-// TODO:色を変数として定義する
+.hi-text-subTitle {
+  font-size: 1.4rem;
+  color: rgb(17, 17, 17);
+  margin: 0;
+  padding-top: 0.2px;
+  padding-bottom: 0.8px;
+}
+
+.hi-text-normal {
+  font-size: 1.1rem;
+  color: rgb(17, 17, 17);
+  margin: 0;
+  padding-top: 0.2px;
+  padding-bottom: 0.4px;
+}
+
+.hi-text-light {
+  font-size: 0.9rem;
+  color: rgba(17, 17, 17, 0.6);
+  margin: 0;
+  padding: 0;
+}

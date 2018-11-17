@@ -26,7 +26,7 @@ export default {
     }
   },
   mounted () {
-    api.get('hellojson').then(res => {
+    api.get('hellojson').then((res) => {
       this.helloJson = res
       console.log(res)
     })
