@@ -4,7 +4,9 @@
       <b-row class="mb-2">
         <b-col md="3">
           <b-row>
-            <b-img-lazy :src="imgSrc" rounded left blank blank-color="#777" width="160" height="90" alt="Thumbnail" />
+            <b-link :to="{name: 'TalkThemeDetail', params: {talkThemeId: talkTheme.id}}">
+              <b-img-lazy :src="imgSrc" rounded left blank blank-color="#777" width="160" height="90" alt="Thumbnail" />
+            </b-link>
           </b-row>
           <b-row>
             <p class="hi-text-light">{{ talkTheme.postedUser }}</p>
@@ -16,7 +18,9 @@
         <b-col md="9">
           <b-row>
             <b-col>
-              <p class="hi-text-subTitle">{{ talkTheme.title }}</p>
+              <b-link :to="{name: 'TalkThemeDetail', params: {talkThemeId: talkTheme.id}}" class="hi-text-subTitle">
+                {{ talkTheme.title }}
+              </b-link>
             </b-col>
           </b-row>
           <b-row>
