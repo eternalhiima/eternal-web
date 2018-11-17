@@ -2,7 +2,6 @@
  * TalkThemeDto
  */
 export default class TalkThemeDto {
-
   constructor (id, title, description, thumbnailUrl, goodCount, badCount,
     talkedCount, relatedCategoryList, postedUser, postedDateTime) {
     this.id = id

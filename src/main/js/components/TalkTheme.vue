@@ -3,9 +3,15 @@
     <b-container fluid >
       <b-row class="mb-2">
         <b-col md="3">
-          <b-img-lazy :src="imgSrc" rounded left blank blank-color="#777" width="160" height="90" alt="Thumbnail" />
-          <p class="hi-text-light">{{ talkTheme.postedUser }}</p>
-          <p class="hi-text-light">{{ parseDateTime(talkTheme.postedDateTime) }}</p>
+          <b-row>
+            <b-img-lazy :src="imgSrc" rounded left blank blank-color="#777" width="160" height="90" alt="Thumbnail" />
+          </b-row>
+          <b-row>
+            <p class="hi-text-light">{{ talkTheme.postedUser }}</p>
+          </b-row>
+          <b-row>
+            <p class="hi-text-light">{{ parseDateTime(talkTheme.postedDateTime) }}</p>
+          </b-row>
         </b-col>
         <b-col md="9">
           <b-row>
@@ -53,7 +59,7 @@ export default {
   data () {
     return {
       // TODO:画像の保存先のパスはAWSS3に変更
-      imgSrc: require('@/resources/static/images/' + this.talkTheme.thumbnailUrl)
+      imgSrc: require(`@/resources/static/images/${this.talkTheme.thumbnailUrl}`)
     }
   },
   props: {
@@ -63,9 +69,7 @@ export default {
     }
   },
   methods: {
-    parseDateTime: (dateTime) => {
-      return DateUtil.parseDateTimeForDisplay(dateTime)
-    }
+    parseDateTime: (dateTime) => DateUtil.parseDateTimeForDisplay(dateTime)
   }
 }
 </script>

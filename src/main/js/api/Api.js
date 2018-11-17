@@ -8,7 +8,7 @@ const serverIP = 'http://localhost:8090/'
 
 const onSuccess = (resp) => {
   if (debug) {
-    console.log(' << ' + JSON.stringify(resp.data))
+    console.log(` << ${JSON.stringify(resp.data)}`)
   }
   return Promise.resolve(resp.data)
 }
@@ -17,9 +17,7 @@ const onError = () => {
   throw new Error('API error.')
 }
 
-const createURL = (path) => {
-  return serverIP + path
-}
+const createURL = (path) => serverIP + path
 
 /**
  * @return Promise
@@ -27,26 +25,26 @@ const createURL = (path) => {
 export default {
   get: (path, params) => {
     if (debug) {
-      console.log('GET ' + createURL(path) + ' >> ' + JSON.stringify(params))
+      console.log(`GET ${createURL(path)} >> ${JSON.stringify(params)}`)
     }
-    return axios.get(createURL(path), { params: params }).then(onSuccess).catch(onError)
+    return axios.get(createURL(path), { params }).then(onSuccess).catch(onError)
   },
   post: (path, params) => {
     if (debug) {
-      console.log('POST ' + createURL(path) + ' >> ' + JSON.stringify(params))
+      console.log(`POST ${createURL(path)} >> ${JSON.stringify(params)}`)
     }
     return axios.post(createURL(path), params).then(onSuccess).catch(onError)
   },
   put: (path, params) => {
     if (debug) {
-      console.log('PUT ' + createURL(path) + ' >> ' + JSON.stringify(params))
+      console.log(`PUT ${createURL(path)} >> ${JSON.stringify(params)}`)
     }
     return axios.put(createURL(path), params).then(onSuccess).catch(onError)
   },
   delete: (path, params) => {
     if (debug) {
-      console.log('DELETE ' + createURL(path) + ' >> ' + JSON.stringify(params))
+      console.log(`DELETE ${createURL(path)} >> ${JSON.stringify(params)}`)
     }
-    return axios.delete(createURL(path), { params: params }).then(onSuccess).catch(onError)
+    return axios.delete(createURL(path), { params }).then(onSuccess).catch(onError)
   }
 }
