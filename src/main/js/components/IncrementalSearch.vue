@@ -53,7 +53,8 @@ export default {
     }
   },
   methods: {
-    inputData () {
+    inputData (e) {
+      e.preventDefault()
       this.$emit('onChangeInput', this.input)
     }
   },

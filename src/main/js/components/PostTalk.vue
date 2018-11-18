@@ -20,7 +20,7 @@
                       class="mb-3">
             </b-form-input>
             <b-container fluid class="m-0 p-0">
-              <b-row align-h="start" class="mx-0 px-0">
+              <b-row align-h="start" class="mx-0 px-0 mb-1">
                 <b-col :md="7" class="p-0">
                   <incremental-search :placeholder="'カテゴリを選択'"
                                       :suggestData="categoryList"
@@ -32,10 +32,9 @@
               </b-row>
               <b-row class="mb-3">
                 <b-col :md="3" align-self="start" v-for="category in form.categoryTagList" :key="category">
-                  <!-- TODO: タグをコンポーネントにし、×ボタンで消えるようにする -->
-                  <b-badge pill variant="light" class="text-muted align-right">
-                    <font-awesome-icon icon="tag" class="tag"/> {{ category }}
-                  </b-badge>
+                  <category-tag :name="category"
+                                :showDeleteBtn="true"
+                                @deleteTag="deleteCategoryTag"/>
                 </b-col>
               </b-row>
             </b-container>
@@ -74,6 +73,7 @@
 <script>
 import fab from 'vue-fab'
 import IncrementalSearch from '@/main/js/components/IncrementalSearch.vue'
+import CategoryTag from '@/main/js/components/CategoryTag.vue'
 import CategoryDto from '@/main/js/dto/CategoryDto.js'
 
 // テストデータ
@@ -88,7 +88,8 @@ export default {
   name: 'post-talk',
   components: {
     fab,
-    incrementalSearch: IncrementalSearch
+    incrementalSearch: IncrementalSearch,
+    categoryTag: CategoryTag
   },
   data () {
     return {
@@ -133,6 +134,12 @@ export default {
       }
       // カテゴリ入力欄の初期化
       this.form.categoryInput = ''
+    },
+    deleteCategoryTag (value) {
+      const deleteIndex = this.form.categoryTagList.indexOf(value)
+      if (deleteIndex !== -1) {
+        this.form.categoryTagList.pop(deleteIndex)
+      }
     },
     onSubmit (e) {
       // talkThemeDtoに変換してapiに渡す

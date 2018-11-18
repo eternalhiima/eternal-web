@@ -3,7 +3,7 @@
  */
 export default class TalkThemeDto {
   constructor (id, title, description, thumbnailUrl, goodCount, badCount,
-    talkedCount, relatedCategoryList, postedUser, postedDateTime) {
+    talkedCount, categoryList, postedUser, postedDateTime) {
     this.id = id
     this.title = title
     this.description = description
@@ -11,7 +11,7 @@ export default class TalkThemeDto {
     this.goodCount = goodCount
     this.badCount = badCount
     this.talkedCount = talkedCount
-    this.relatedCategoryList = relatedCategoryList
+    this.categoryList = categoryList
     this.postedUser = postedUser
     /** yyyyMMddHHmm形式 */
     this.postedDateTime = postedDateTime
@@ -73,12 +73,12 @@ export default class TalkThemeDto {
     this._talkedCount = val
   }
 
-  get relatedCategoryList () {
-    return this._relatedCategoryList
+  get categoryList () {
+    return this._categoryList
   }
 
-  set relatedCategoryList (val) {
-    this._relatedCategoryList = val
+  set categoryList (val) {
+    this._categoryList = val
   }
 
   get postedUser () {
