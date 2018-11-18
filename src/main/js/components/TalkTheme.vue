@@ -42,9 +42,8 @@
             </b-col>
           </b-row>
           <b-row align-h="start">
-            <b-col md="3" align-self="start" v-for="category in talkTheme.categoryList">
-              <category-tag :key="category.id"
-                            :name="category.name"/>
+            <b-col md="3" align-self="start" v-for="category in talkTheme.categoryList" :key="category.id">
+              <category-tag :name="category.name"/>
             </b-col>
           </b-row>
         </b-col>

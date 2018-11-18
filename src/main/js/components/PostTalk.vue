@@ -6,19 +6,24 @@
     </fab>
     <!-- トークテーマ投稿モーダルウィンドウ -->
     <b-modal ref="postTalkModal" @shown="focusTitleInput" hide-footer centered title="トークテーマを投稿">
-      <div class="d-block text-center">
-        <b-form @submit="onSubmit">
+      <div>
+        <b-form @submit="onSubmit" :novalidate="true">
           <b-form-group>
-            <!-- TODO:エラーメッセージを表示する欄を作る -->
-            <b-form-input id="title"
-                      v-model="form.title"
-                      ref="titleInput"
-                      type="text"
-                      size="sm"
-                      required
-                      placeholder="トークテーマのタイトル"
-                      class="mb-3">
-            </b-form-input>
+            <b-form-row class="mb-3">
+              <b-form-input id="title"
+                        v-model.trim="form.title"
+                        :state="validateState.isTitleValid"
+                        aria-describedby="titleInvalidFeedback"
+                        ref="titleInput"
+                        type="text"
+                        size="sm"
+                        required
+                        placeholder="トークテーマのタイトル">
+              </b-form-input>
+              <b-form-invalid-feedback id="titleInvalidFeedback">
+                タイトルを30文字以内で入力して下さい
+              </b-form-invalid-feedback>
+            </b-form-row>
             <b-container fluid class="m-0 p-0">
               <b-row align-h="start" class="mx-0 px-0 mb-1">
                 <b-col :md="7" class="p-0">
@@ -38,31 +43,47 @@
                 </b-col>
               </b-row>
             </b-container>
-            <b-form-textarea id="description"
-                             v-model="form.description"
-                             placeholder="トークテーマの説明"
-                             :rows="4"
-                             :max-rows="8"
-                             class="mb-3">
-            </b-form-textarea>
-            <b-form-input id="userName"
-                      v-model="form.postedUser"
-                      type="text"
-                      size="sm"
-                      required
-                      placeholder="ユーザー名"
-                      class="mb-3">
-            </b-form-input>
-            <b-form-input id="title"
-                      v-model="form.relatedLink"
-                      type="url"
-                      size="sm"
-                      placeholder="トークテーマに関連するリンク">
-            </b-form-input>
-            <b-form-text class="mb-3 text-left">
-              YouTubeやWikiPediaなどのリンクを入力してください。
-            </b-form-text>
-            <b-button type="submit" variant="primary"> 投稿 </b-button>
+            <b-form-row class="mb-3">
+              <b-form-textarea id="description"
+                               v-model.trim="form.description"
+                               :state="validateState.isDescriptionValid"
+                               aria-describedby="descriptionInvalidFeedback"
+                               placeholder="トークテーマの説明"
+                               :rows="4"
+                               :max-rows="8">
+              </b-form-textarea>
+              <b-form-invalid-feedback id="descriptionInvalidFeedback">
+                説明を500文字以内で入力して下さい
+              </b-form-invalid-feedback>
+            </b-form-row>
+            <b-form-row class="mb-3">
+              <b-form-input id="userName"
+                        v-model.trim="form.userName"
+                        :state="validateState.isUserNameValid"
+                        aria-describedby="userNameInvalidFeedback"
+                        type="text"
+                        size="sm"
+                        required
+                        placeholder="ユーザー名">
+              </b-form-input>
+              <b-form-invalid-feedback id="userNameInvalidFeedback">
+                ユーザー名を10文字以内で入力して下さい
+              </b-form-invalid-feedback>
+            </b-form-row>
+            <b-form-row class="mb-3">
+              <b-form-input id="relatedUrl"
+                        v-model.trim="form.relatedLink"
+                        type="url"
+                        size="sm"
+                        placeholder="トークテーマに関連するリンク">
+              </b-form-input>
+              <b-form-text>
+                YouTubeやWikiPediaなどのリンクを入力してください
+              </b-form-text>
+            </b-form-row>
+            <div class="text-center">
+              <b-button type="submit" variant="primary"> 投稿 </b-button>
+            </div>
           </b-form-group>
         </b-form>
       </div>
@@ -100,14 +121,18 @@ export default {
         tooltip: 'トークテーマ投稿',
         color: '#343a40'
       }],
-      // TODO: 相関バリデーションの実装
       form: {
         title: '',
         categoryInput: '',
         categoryTagList: [],
         description: '',
-        postedUser: '',
+        userName: '',
         relatedLink: ''
+      },
+      validateState: {
+        isTitleValid: null,
+        isDescriptionValid: null,
+        isUserNameValid: null
       },
       // TODO:カテゴリのリストはRef003_トークテーマジャンル一覧取得より取得
       categoryList: [categoryDto1, categoryDto2, categoryDto3, categoryDto4, categoryDto5, categoryDto6]
@@ -130,6 +155,7 @@ export default {
         return
       }
       if (this.form.categoryTagList.indexOf(this.categoryInput) === -1) {
+        // すでに登録されているタグは追加しない
         this.form.categoryTagList.push(this.categoryInput)
       }
       // カテゴリ入力欄の初期化
@@ -142,14 +168,22 @@ export default {
       }
     },
     onSubmit (e) {
-      // talkThemeDtoに変換してapiに渡す
-      alert(JSON.stringify(this.form))
+      e.preventDefault()
+      // 入力欄のバリデーション
+      this.validateState.isTitleValid = this.form.title.length !== 0 && this.form.title.length <= 30
+      this.validateState.isDescriptionValid = this.form.description.length !== 0 && this.form.description.length <= 500
+      this.validateState.isUserNameValid = this.form.userName.length !== 0 && this.form.userName.length <= 10
+      if (this.validateState.isTitleValid && this.validateState.isDescriptionValid && this.validateState.isUserNameValid) {
+        // TODO: talkThemeDtoに変換してapiに渡す
+        alert(JSON.stringify(this.form))
+      }
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
+/** vue-fab用のcss */
 @import (css) "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import (css) "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css";
 </style>

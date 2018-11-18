@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="incrementalSearch" class="m-0 p-0">
     <input type="search"
-           v-model="input"
+           v-model.trim="input"
            @blur="inputData"
            @change="inputData"
            :placeholder="placeholder"
@@ -76,6 +76,8 @@ export default {
 <style lang="less" scoped>
 .inputArea {
   width: 100%;
+  padding: 0.25rem 0.5rem;
+  font-family: inherit;
   color: #495057;
   border: 1px solid #ced4da;
   border-radius: 0.2rem;
