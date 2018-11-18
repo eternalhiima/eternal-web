@@ -13,11 +13,12 @@
     </ul>
     <b-container fluid>
       <b-row class="my-1">
-        <b-col md="5">
+        <b-col md="5" class="mx-0 pl-1 pr-0">
           <p>カテゴリ：</p>
         </b-col>
-        <b-col sm="10" md="7">
-          <b-form-select v-model="selectedCategory" :options="categoryList" :select-size="1"></b-form-select>
+        <b-col sm="10" md="7" class="pl-0">
+          <incremental-search :placeholder="'カテゴリを選択'"
+                              :suggestData="categoryList" />
         </b-col>
       </b-row>
       <b-row class="my-3">
@@ -30,8 +31,22 @@
 </template>
 
 <script>
+import IncrementalSearch from '@/main/js/components/IncrementalSearch.vue'
+import CategoryDto from '@/main/js/dto/CategoryDto.js'
+
+// テストデータ
+const categoryDto1 = new CategoryDto(1, 'hoge')
+const categoryDto2 = new CategoryDto(2, 'fuga')
+const categoryDto3 = new CategoryDto(3, 'hoge2')
+const categoryDto4 = new CategoryDto(4, 'hogefuga4')
+const categoryDto5 = new CategoryDto(5, 'トーク1')
+const categoryDto6 = new CategoryDto(6, 'カテゴリ2')
+
 export default {
   name: 'search-condition-area',
+  components: {
+    incrementalSearch: IncrementalSearch
+  },
   data () {
     return {
       // TODO:人気のトークテーマリストはRef001_トークテーマ一覧取得より取得
@@ -42,7 +57,7 @@ export default {
         {name: '人気のトークテーマ'}],
       selectedCategory: null,
       // TODO:カテゴリのリストはRef003_トークテーマジャンル一覧取得より取得
-      categoryList: ['カテゴリ1', 'カテゴリ2', 'カテゴリ3', 'カテゴリ4', 'カテゴリ5', 'カテゴリ6']
+      categoryList: [categoryDto1, categoryDto2, categoryDto3, categoryDto4, categoryDto5, categoryDto6]
     }
   }
 }

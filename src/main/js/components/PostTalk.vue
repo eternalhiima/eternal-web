@@ -9,6 +9,7 @@
       <div class="d-block text-center">
         <b-form @submit="onSubmit">
           <b-form-group>
+            <!-- TODO:エラーメッセージを表示する欄を作る -->
             <b-form-input id="title"
                       v-model="form.title"
                       ref="titleInput"
@@ -18,16 +19,26 @@
                       placeholder="トークテーマのタイトル"
                       class="mb-3">
             </b-form-input>
-            <!-- TODO:インクリメンタルサーチコンポーネントに変更 -->
-            <b-form-select id="category"
-                           v-model="form.category"
-                           :options="categoryList"
-                           :select-size="1"
-                           size="sm">
-            </b-form-select>
-            <b-badge pill variant="light" class="mr-1 mb-3 text-muted" >
-              <font-awesome-icon icon="tag" class="tag"/> {{ form.category }}
-            </b-badge>
+            <b-container fluid class="m-0 p-0">
+              <b-row align-h="start" class="mx-0 px-0">
+                <b-col :md="7" class="p-0">
+                  <incremental-search :placeholder="'カテゴリを選択'"
+                                      :suggestData="categoryList"
+                                      @onChangeInput="changeCategoryInput"/>
+                </b-col>
+                <b-col :md="2">
+                  <b-button size="sm" @click="addCategoryTag">追加</b-button>
+                </b-col>
+              </b-row>
+              <b-row class="mb-3">
+                <b-col :md="3" align-self="start" v-for="category in form.categoryTagList" :key="category">
+                  <!-- TODO: タグをコンポーネントにし、×ボタンで消えるようにする -->
+                  <b-badge pill variant="light" class="text-muted align-right">
+                    <font-awesome-icon icon="tag" class="tag"/> {{ category }}
+                  </b-badge>
+                </b-col>
+              </b-row>
+            </b-container>
             <b-form-textarea id="description"
                              v-model="form.description"
                              placeholder="トークテーマの説明"
@@ -62,11 +73,22 @@
 
 <script>
 import fab from 'vue-fab'
+import IncrementalSearch from '@/main/js/components/IncrementalSearch.vue'
+import CategoryDto from '@/main/js/dto/CategoryDto.js'
+
+// テストデータ
+const categoryDto1 = new CategoryDto(1, 'hoge')
+const categoryDto2 = new CategoryDto(2, 'fuga')
+const categoryDto3 = new CategoryDto(3, 'hoge2')
+const categoryDto4 = new CategoryDto(4, 'hogefuga4')
+const categoryDto5 = new CategoryDto(5, 'トーク1')
+const categoryDto6 = new CategoryDto(6, 'カテゴリ2')
 
 export default {
-  name: 'post-talk-btn',
+  name: 'post-talk',
   components: {
-    fab
+    fab,
+    incrementalSearch: IncrementalSearch
   },
   data () {
     return {
@@ -80,13 +102,14 @@ export default {
       // TODO: 相関バリデーションの実装
       form: {
         title: '',
-        category: [],
+        categoryInput: '',
+        categoryTagList: [],
         description: '',
         postedUser: '',
         relatedLink: ''
       },
       // TODO:カテゴリのリストはRef003_トークテーマジャンル一覧取得より取得
-      categoryList: ['カテゴリ1', 'カテゴリ2', 'カテゴリ3', 'カテゴリ4', 'カテゴリ5', 'カテゴリ6']
+      categoryList: [categoryDto1, categoryDto2, categoryDto3, categoryDto4, categoryDto5, categoryDto6]
     }
   },
   methods: {
@@ -95,6 +118,21 @@ export default {
     },
     focusTitleInput (e) {
       this.$refs.titleInput.focus()
+    },
+    // カテゴリ入力タグのデータを取得
+    changeCategoryInput (value) {
+      this.categoryInput = value
+    },
+    addCategoryTag () {
+      if (this.form.categoryTagList.length >= 4) {
+        // error
+        return
+      }
+      if (this.form.categoryTagList.indexOf(this.categoryInput) === -1) {
+        this.form.categoryTagList.push(this.categoryInput)
+      }
+      // カテゴリ入力欄の初期化
+      this.form.categoryInput = ''
     },
     onSubmit (e) {
       // talkThemeDtoに変換してapiに渡す
