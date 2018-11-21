@@ -2,9 +2,10 @@
  * TalkThemeDto
  */
 export default class TalkThemeDto {
-  constructor (id, title, description, thumbnailUrl, goodCount, badCount,
+  constructor (id, order, title, description, thumbnailUrl, goodCount, badCount,
     talkedCount, categoryList, postedUser, postedDateTime) {
     this.id = id
+    this.order = order
     this.title = title
     this.description = description
     this.thumbnailUrl = thumbnailUrl
@@ -19,6 +20,14 @@ export default class TalkThemeDto {
 
   get id () {
     return this._id
+  }
+
+  set order (val) {
+    this._order = val
+  }
+
+  get order () {
+    return this._order
   }
 
   set id (val) {
