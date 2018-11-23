@@ -1,21 +1,16 @@
 <template lang="html">
-  <g>
-    <!-- <defs>
-      <linearGradient id="gradation">
-        <stop class="stop1" offset="0%"/>
-        <stop class="stop2" offset="100%"/>
-      </linearGradient>
-    </defs> -->
+  <g class="trendItem">
     <circle :cx="cx"
             :cy="cy"
             :r="calcItemRadius()"
             @click="onClickItem"
-            class="trendItem"></circle>
+            class="trendCircle"></circle>
     <text :x="cx"
           :y="cy"
           @click="onClickItem"
           text-anchor="middle"
-          dominant-baseline="central">
+          dominant-baseline="central"
+          class="trendText">
       {{ trendData.title}}
     </text>
   </g>
@@ -36,14 +31,23 @@ export default {
   mounted () {
     // cxとcyを初期化する
     this.cx = this.canvasWidth * Math.random()
-    this.cy = this.canvasHeight - (Math.random() * 300)
+    this.cy = this.canvasHeight * Math.random()
+    // 0.01msごとに座標を動かす
     this.timer = setInterval(() => {
-      if (Math.round(Math.random()) === 1) {
-        this.cx += Math.random() * 0.2
+      if (this.cx + this.calcItemRadius() < 0) {
+        this.cx = this.canvasWidth + this.calcItemRadius()
+      } else if (this.cx - this.calcItemRadius() > this.canvasWidth) {
+        this.cx = -this.calcItemRadius()
       } else {
-        this.cx -= Math.random() * 0.1
+        this.cx += Math.round(Math.random()) === 1
+          ? Math.random() * 0.2 : Math.random() * -0.1
       }
-      this.cy -= Math.random() * 0.1
+      if (this.cy + this.calcItemRadius() < 0) {
+        // 画面の上に見切れたら下から再表示
+        this.cy = this.canvasHeight + this.calcItemRadius()
+      } else {
+        this.cy -= Math.random() * 0.1
+      }
     }, 0.01)
   },
   props: {
@@ -62,15 +66,27 @@ export default {
   },
   methods: {
     calcItemRadius () {
-      // トレンドの順位によってサイズを変更する
-      switch (this.trendData.order) {
-        case 1:
-          return 105
-        case 2:
-        case 3:
-          return 90
-        default :
-          return 75
+      if (this.canvasWidth >= 992) {
+        // トレンドの順位によってアイテムのサイズを変更する
+        switch (this.trendData.order) {
+          case 1:
+            return 105
+          case 2:
+          case 3:
+            return 90
+          default :
+            return 75
+        }
+      } else {
+        switch (this.trendData.order) {
+          case 1:
+            return 90
+          case 2:
+          case 3:
+            return 75
+          default :
+            return 60
+        }
       }
     },
     onClickItem (e) {
@@ -86,27 +102,25 @@ export default {
 </script>
 
 <style lang="less" scoped>
-// insta カラー
+// TODO: 全体でimportしているのでここからimportを削除
+@import "./../../../resources/static/less/base";
 .trendItem {
-  fill: #03a9f4;
+  cursor: pointer;
+  .trendCircle {
+    fill: #03a9f4;
+    opacity: 0.8;
+  }
+  .trendText {
+    fill: #fff;
+    @media @app, @tab {
+      font-size: 0.8rem;
+    }
+    @media @pc {
+      font-size: 1rem;
+    }
+  }
 }
-// TODO: インスタカラー
-// .trendItem {
-//   display: block;
-//   fill: -webkit-linear-gradient(135deg, #427eff 0%, #f13f79 70%) no-repeat;
-//   background: linear-gradient(135deg, #427eff 0%, #f13f79 70%) no-repeat;/*グラデーション①*/
-//   overflow: hidden;/*はみ出た部分を隠す*/
-// }
-//
-// .trendItem:before{/*グラデーション②*/
-//   content: '';
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 100%;/*全体を覆う*/
-//   height: 100%;/*全体を覆う*/
-//   background: -webkit-linear-gradient(15deg, #ffdb2c, rgb(249, 118, 76) 25%, rgba(255, 77, 64, 0) 50%) no-repeat;
-//   background: linear-gradient(15deg, #ffdb2c, rgb(249, 118, 76) 25%, rgba(255, 77, 64, 0) 50%) no-repeat;
-// }
-
+.trendCircle:hover {
+  opacity: 0.7;
+}
 </style>

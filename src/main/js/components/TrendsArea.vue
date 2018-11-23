@@ -5,7 +5,7 @@
                   :key="trendItem.id"
                   :trendData="trendItem"
                   :canvasWidth="width"
-                  :canvasHeight="height"/>
+                  :canvasHeight="height" />
 
     </svg>
   </div>
