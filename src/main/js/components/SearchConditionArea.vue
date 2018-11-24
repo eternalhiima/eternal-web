@@ -7,7 +7,7 @@
         <!-- 総合ランキングは常にトップに表示 -->
         <b-link class="listItem">総合ランキング</b-link>
       </li>
-      <li v-for="item in popularRankingList" v-bind:key="item.name">
+      <li v-for="item in popularRankingList" :key="item.name">
         <b-link>{{ item.name }}</b-link>
       </li>
     </ul>

@@ -146,26 +146,20 @@ export default {
       this.$refs.titleInput.focus()
     },
     // カテゴリ入力タグのデータを取得
-    changeCategoryInput (value) {
-      this.categoryInput = value
+    changeCategoryInput (val) {
+      this.categoryInput = val
     },
     addCategoryTag () {
-      if (this.form.categoryTagList.length >= 4) {
-        // error
+      if (this.categoryInput.length === 0 || // 空白チェック
+          this.form.categoryTagList.length >= 4 || // タグは4個まで
+          this.categoryInput.length >= 12 || // 1つのタグは12文字まで
+          this.form.categoryTagList.indexOf(this.categoryInput) !== -1) { // 同じタグは登録不可
         return
       }
-      if (this.form.categoryTagList.indexOf(this.categoryInput) === -1) {
-        // すでに登録されているタグは追加しない
-        this.form.categoryTagList.push(this.categoryInput)
-      }
-      // カテゴリ入力欄の初期化
-      this.form.categoryInput = ''
+      this.form.categoryTagList.push(this.categoryInput)
     },
-    deleteCategoryTag (value) {
-      const deleteIndex = this.form.categoryTagList.indexOf(value)
-      if (deleteIndex !== -1) {
-        this.form.categoryTagList.pop(deleteIndex)
-      }
+    deleteCategoryTag (val) {
+      this.form.categoryTagList = this.form.categoryTagList.filter((s) => s !== val)
     },
     onSubmit (e) {
       e.preventDefault()

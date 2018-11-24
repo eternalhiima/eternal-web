@@ -1,7 +1,7 @@
 <template lang='html'>
   <div id='talkThemeList'>
-    <ol>
-      <talk-theme v-for="talkTheme in talkThemeList" v-bind:key="talkTheme.id" :talkTheme="talkTheme"></talk-theme>
+    <ol v-for="talkTheme in talkThemeList" :key="talkTheme.id">
+      <talk-theme :talkTheme="talkTheme" />
     </ol>
   </div>
 </template>
