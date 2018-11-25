@@ -41,11 +41,9 @@
               <p class="hi-text-light">トーク数 {{ talkTheme.talkedCount }}</p>
             </b-col>
           </b-row>
-          <b-row>
-            <b-col>
-              <b-badge pill variant="light" class="mr-1 text-muted" v-for="category in talkTheme.relatedCategoryList" v-bind:key="category.name">
-                <font-awesome-icon icon="tag" class="tag"/> {{ category.name }}
-              </b-badge>
+          <b-row align-h="start">
+            <b-col md="3" align-self="start" v-for="category in talkTheme.categoryList" :key="category.id">
+              <category-tag :name="category.name"/>
             </b-col>
           </b-row>
         </b-col>
@@ -55,11 +53,15 @@
 </template>
 
 <script>
+import CategoryTag from '@/main/js/components/CategoryTag.vue'
 import TalkThemeDto from '@/main/js/dto/TalkThemeDto'
 import DateUtil from '@/main/js/util/DateUtil'
 
 export default {
   name: 'talk-theme',
+  components: {
+    categoryTag: CategoryTag
+  },
   data () {
     return {
       // TODO:画像の保存先のパスはAWSS3に変更
