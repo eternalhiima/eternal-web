@@ -22,7 +22,7 @@
       <p class="ml-1">{{ this.talkTheme.description }}</p>
       <b-row align-h="center">
         <!--トーク詳細ボタン-->
-        <b-btn :to="this.talkThemeDetailUrl"
+        <b-btn :to="{name: 'TalkThemeDetail', params: {talkThemeId: talkTheme.id}}"
                size="lg"
                class="m-3"
                variant="primary">
@@ -46,12 +46,8 @@ export default {
   },
   data () {
     return {
-      talkTheme: talkTheme1,
-      talkThemeDetailUrl: ''
+      talkTheme: talkTheme1
     }
-  },
-  mounted () {
-    this.talkThemeDetailUrl = `/talk/${this.talkTheme.id}`
   }
 }
 </script>

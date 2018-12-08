@@ -1,8 +1,8 @@
 <template lang="html">
   <div id="Random">
-    <global-header></global-header>
-    <random-talk-panel></random-talk-panel>
-    <post-talk></post-talk>
+    <global-header/>
+    <random-talk-panel/>
+    <post-talk/>
   </div>
 </template>
 
