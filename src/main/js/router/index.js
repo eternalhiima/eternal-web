@@ -12,22 +12,34 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      meta: {
+        title: 'hiima'
+      }
     },
     {
       path: '/random',
       name: 'Random',
-      component: Random
+      component: Random,
+      meta: {
+        title: 'hiima | ランダム'
+      }
     },
     {
       path: '/ranking',
       name: 'Ranking',
-      component: Ranking
+      component: Ranking,
+      meta: {
+        title: 'hiima | ランキング'
+      }
     },
     {
       path: '/talk/:talkThemeId',
       name: 'TalkThemeDetail',
-      component: TalkThemeDetail
+      component: TalkThemeDetail,
+      meta: {
+        title: 'hiima | トークテーマ詳細'
+      }
     }
   ]
 })

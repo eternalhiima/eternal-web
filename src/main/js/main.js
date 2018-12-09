@@ -26,3 +26,14 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+// routing config
+router.beforeEach((to, from, next) => {
+  let metaTitle = 'hiima'
+  // set title
+  if (to.meta.title) {
+    metaTitle = to.meta.title
+  }
+  document.title = metaTitle
+  next()
+})
