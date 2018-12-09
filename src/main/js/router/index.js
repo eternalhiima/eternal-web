@@ -4,8 +4,6 @@ import Home from '@/main/js/pages/Home.vue'
 import Random from '@/main/js/pages/Random.vue'
 import Ranking from '@/main/js/pages/Ranking.vue'
 import TalkThemeDetail from '@/main/js/pages/TalkThemeDetail.vue'
-// Test
-import HelloWorld from '@/main/js/pages/HelloTest.vue'
 
 Vue.use(Router)
 
@@ -14,27 +12,34 @@ export default new Router({
     {
       path: '/',
       name: 'Home',
-      component: Home
+      component: Home,
+      meta: {
+        title: 'hiima'
+      }
     },
     {
       path: '/random',
       name: 'Random',
-      component: Random
+      component: Random,
+      meta: {
+        title: 'hiima | ランダム'
+      }
     },
     {
       path: '/ranking',
       name: 'Ranking',
-      component: Ranking
+      component: Ranking,
+      meta: {
+        title: 'hiima | ランキング'
+      }
     },
     {
       path: '/talk/:talkThemeId',
       name: 'TalkThemeDetail',
-      component: TalkThemeDetail
-    },
-    {
-      path: '/hello',
-      name: 'HelloWorld',
-      component: HelloWorld
+      component: TalkThemeDetail,
+      meta: {
+        title: 'hiima | トークテーマ詳細'
+      }
     }
   ]
 })
