@@ -17,13 +17,12 @@
       <category-tag :name="category.name"
                     v-for="category in this.talkTheme.categoryList"
                     :key="category.id"
-                    class="ml-1">
-      </category-tag>
+                    class="ml-1" />
       <p class="ml-1">{{ this.talkTheme.description }}</p>
       <b-row align-h="center">
         <!--トーク詳細ボタン-->
         <b-btn :to="{name: 'TalkThemeDetail', params: {talkThemeId: talkTheme.id}}"
-               size="lg"
+               size="md"
                class="m-3"
                variant="primary">
           詳細へ
