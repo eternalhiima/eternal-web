@@ -28,7 +28,7 @@ export default class CategoryLevelType {
 
   /**
    * @param level カテゴリレベル
-   * @retrun categoryLevelName カテゴリレベル名
+   * @return categoryLevelName カテゴリレベル名
    */
   static getNameByLevel (level) {
     return CategoryLevelList.filter((categoryLevel) => categoryLevel.level === level)[0].name
@@ -36,10 +36,17 @@ export default class CategoryLevelType {
 
   /**
    * @param categoryLevelType カテゴリレベルタイプ
-   * @retrun categoryLevel カテゴリレベル
+   * @return categoryLevel カテゴリレベル
    */
   static getLevel (categoryLevelType) {
     return CategoryLevelList.filter((categoryLevel) => categoryLevel === categoryLevelType)[0].level
+  }
+
+  /**
+   * @return CategoryLevelList カテゴリレベルタイプリスト
+   */
+  static values () {
+    return CategoryLevelList
   }
 
   static get EROTIC () {
