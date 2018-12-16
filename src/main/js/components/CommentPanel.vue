@@ -1,43 +1,59 @@
 <template lang="html">
   <div>
-    <b-row>
-      <b-col sm="1" md="1" lg="1">
-        <b-img-lazy :src="imgSrc" rounded left blank blank-color="#777" width="90" height="90" alt="ProfileImg"></b-img-lazy>
-      </b-col>
-      <b-col sm="10" md="10" lg="10">
-        <b-row>
-          <span class="mr-2">{{ this.comment.userName }}</span>
-          <span class="mr-2 text-muted">{{ parseDateTime(comment.commentedDateTime) }}</span>
-        </b-row>
-        <b-row>
-          <p>コメント</p>
-        </b-row>
-      </b-col>
-    </b-row>
+    <!-- コメント投稿フォーム -->
+    <b-form inline>
+      <b-form-input v-model="inputComment"
+                    type="text"
+                    placeholder="コメント"
+                    size="md"
+                    class="ml-2 w-75"></b-form-input>
+      <b-button @click="postComment"
+                type="submit"
+                variant="secondary"
+                class="ml-2">コメント</b-button>
+    </b-form>
+      <!-- コメント表示エリア -->
+      <ul v-for="comment in commentList" :key="comment.id">
+        <comment :comment="comment"/>
+      </ul>
+    </b-container>
   </div>
 </template>
 
 <script>
 import CommentDto from '@/main/js/dto/CommentDto'
+import Comment from '@/main/js/components/Comment.vue'
 import DateUtil from '@/main/js/util/DateUtil'
+
+const commentDto1 = new CommentDto(1, '大友康弘', 'user_profile_sample.jpg', '楽しかった！', '201811111200')
+const commentDto2 = new CommentDto(2, '大友康弘', null, 'つまらなかった！', '201811111500')
 
 export default {
   name: 'CommentPanel',
   components: {
-    commentDto: CommentDto
+    comment: Comment
   },
   data () {
     return {
-      imgSrc: require(`@/resources/static/images/${this.comment.profileImgUrl}`)
-    }
-  },
-  props: {
-    comment: {
-      required: false
+      // TODO: propsで受け取る
+      commentList: [commentDto1, commentDto2],
+      inputComment: ''
     }
   },
   methods: {
-    parseDateTime: (dateTime) => DateUtil.parseDateTimeForDisplay(dateTime)
+    postComment (e) {
+      const userName = 'ゲスト'
+      let maxId = 0
+      this.commentList.forEach((comment) => {
+        if (maxId < comment.id) {
+          maxId = comment.id
+        }
+      })
+      const comment = new CommentDto(maxId + 1, userName, null, this.inputComment, DateUtil.now())
+      // TODO: APIにてコメントをサーバーに登録。エラーの場合は画面にアラート表示  
+      this.commentList.push(comment)
+      this.inputComment = ''
+    }
   }
 }
 </script>

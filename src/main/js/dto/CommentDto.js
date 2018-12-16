@@ -1,7 +1,7 @@
 /**
- * TalkThemeDto
+ * CommentDto
  */
-export default class TalkThemeDto {
+export default class CommentDto {
   constructor (id, userName, profileImgUrl, comment, commentedDateTime) {
     this.id = id
     this.userName = userName

@@ -1,8 +1,8 @@
 <template lang="html">
   <div id="tailThemeDetail">
     <global-header/>
-    <talk-theme-detail-main-panel :talkTheme="talkTheme"/>
-    <comment-panel class="mt-2"/>
+    <talk-theme-detail-main-panel :talkTheme="talkTheme" class="ml-2"/>
+    <comment-panel class="mt-2 ml-2"/>
     <recommend-theme-view-panel class="mt-2"/>
     <post-talk/>
   </div>
@@ -10,11 +10,11 @@
 
 <script>
 import GlobalHeader from '@/main/js/components/Header.vue'
-import PostTalk from '@/main/js/components/PostTalk.vue'
 import TalkThemeDetailMainPanel from '@/main/js/components/TalkThemeDetailMainPanel.vue'
-import TalkThemeDto from '@/main/js/dto/TalkThemeDto'
-import CommentPanel from '@/main/js/components/CommentMainPanel.vue'
+import CommentPanel from '@/main/js/components/CommentPanel.vue'
 import RecommendThemeViewPanel from '@/main/js/components/RecommendThemeViewPanel.vue'
+import PostTalk from '@/main/js/components/PostTalk.vue'
+import TalkThemeDto from '@/main/js/dto/TalkThemeDto'
 
 // テストデータの準備
 const talkTheme1 = new TalkThemeDto(1, 1, 'タイトル1', 'hogehogehoge', 'thumbnail_sample1.png', 100, 50, 200, [{name: 'tag1'}, {name: 'tag2'}], 'fugaさん', '201811111200')
@@ -30,8 +30,13 @@ export default {
   },
   data () {
     return {
-      talkTheme: talkTheme1
+      talkTheme: null
     }
+  },
+  mounted () {
+    // TODO:受け取ったtalkThemeIdをもとにトークテーマをAPIで取得する
+    const talkThemeId = this.$route.params.talkThemeId
+    this.talkTheme = talkTheme1
   }
 }
 </script>

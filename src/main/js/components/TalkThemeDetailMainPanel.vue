@@ -1,29 +1,22 @@
 <template lang="html">
   <div id="talkThemeDetailMainPanel">
-    <b-container fluid>
+    <b-card :title="this.talkTheme.title" class="mt-3">
       <b-row>
-        <b-col sm="12" md="12" lg="12">
-          <b-card :title="this.talkTheme.title"
-                  class="mt-3">
-            <b-row>
-              <b-col sm="12" md="4" lg="4">
-                <b-img-lazy :src="imgSrc" rounded left blank blank-color="#777" alt="Thumbnail"></b-img-lazy>
-              </b-col>
-              <b-col sm="12" md="8" lg="8">
-                <b-row>
-                  <p class="hi-text-normal">{{ talkTheme.description}}</p>
-                </b-row>
-                <b-row>
-                  <b-button variant="primary" class="mr-2">↑Good</b-button>
-                  <b-button variant="danger" class="mr-2">↓Bad</b-button>
-                  <b-button class="mr-2">共有</b-button>
-                </b-row>
-              </b-col>
-            </b-row>
-          </b-card>
+        <b-col sm="12" md="4" lg="4">
+          <b-img-lazy :src="imgSrc" rounded left blank blank-color="#777" alt="Thumbnail"></b-img-lazy>
+        </b-col>
+        <b-col sm="12" md="8" lg="8">
+          <b-row>
+            <p class="hi-text-normal">{{ talkTheme.description}}</p>
+          </b-row>
+          <b-row>
+            <b-button variant="primary" class="mr-2">↑Good</b-button>
+            <b-button variant="danger" class="mr-2">↓Bad</b-button>
+            <b-button class="mr-2">共有</b-button>
+          </b-row>
         </b-col>
       </b-row>
-    </b-container>
+    </b-card>
   </div>
 </template>
 
