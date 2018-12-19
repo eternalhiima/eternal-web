@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="tailThemeDetail">
     <global-header/>
-    <talk-theme-detail-main-panel :talkTheme="talkTheme" class="ml-2"/>
+    <talk-theme-detail-main-panel :talkTheme="this.talkTheme" class="mx-2"/>
     <comment-panel class="mt-2 ml-2"/>
     <recommend-theme-view-panel class="mt-2"/>
     <post-talk/>
@@ -33,7 +33,7 @@ export default {
       talkTheme: null
     }
   },
-  mounted () {
+  created () {
     // TODO:受け取ったtalkThemeIdをもとにトークテーマをAPIで取得する
     const talkThemeId = this.$route.params.talkThemeId
     this.talkTheme = talkTheme1

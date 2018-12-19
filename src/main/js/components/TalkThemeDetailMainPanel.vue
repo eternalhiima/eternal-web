@@ -1,31 +1,50 @@
 <template lang="html">
   <div id="talkThemeDetailMainPanel">
-    <b-card :title="this.talkTheme.title" class="mt-3">
-      <b-row>
-        <b-col sm="12" md="4" lg="4">
-          <b-img-lazy :src="imgSrc" rounded left blank blank-color="#777" alt="Thumbnail"></b-img-lazy>
-        </b-col>
-        <b-col sm="12" md="8" lg="8">
-          <b-row>
+    <b-card :title="talkTheme.title" class="mt-3">
+      <b-container fluid>
+        <b-row class="mb-2">
+          <b-col md="4" sm="6">
+            <b-img-lazy :src="imgSrc" rounded blank blank-color="#777" width="320" height="180" alt="Thumbnail" />
+          </b-col>
+          <b-col md="8" sm="6">
             <p class="hi-text-normal">{{ talkTheme.description}}</p>
-          </b-row>
-          <b-row>
-            <b-button variant="primary" class="mr-2">↑Good</b-button>
-            <b-button variant="danger" class="mr-2">↓Bad</b-button>
-            <b-button class="mr-2">共有</b-button>
-          </b-row>
-        </b-col>
-      </b-row>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col md="4" sm="6">
+            <p class="hi-text-light">{{ talkTheme.postedUser }}</p>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col md="4" sm="6">
+            <p class="hi-text-light">{{ parseDateTime(talkTheme.postedDateTime) }}</p>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col sm="1" md="1" align-self="start" v-for="category in talkTheme.categoryList" :key="category.id">
+            <category-tag :name="category.name"/>
+          </b-col>
+        </b-row>
+        <hr>
+        <b-row class="mt-2">
+          <b-button @click="onEvalGood" variant="outline-primary" size="sm" class="mx-1">↑Good{{ talkTheme.goodCount }}</b-button>
+          <b-button @click="onEvalBad" variant="outline-danger" size="sm" class="mx-1">↓Bad{{ talkTheme.badCount }}</b-button>
+          <b-button @click="onShare" variant="outline-secondary" size="sm" class="mx-1">共有</b-button>
+        </b-row>
+      </b-container>
     </b-card>
   </div>
 </template>
 
 <script>
+import CategoryTag from '@/main/js/components/CategoryTag.vue'
 import TalkThemeDto from '@/main/js/dto/TalkThemeDto'
+import DateUtil from '@/main/js/util/DateUtil'
 
 export default {
   name: 'TalkThemeDetailMainPanel',
   components: {
+    categoryTag: CategoryTag
   },
   props: {
     talkTheme: {
@@ -37,6 +56,21 @@ export default {
     return {
       // TODO:画像の保存先のパスはAWSS3に変更
       imgSrc: require(`@/resources/static/images/${this.talkTheme.thumbnailUrl}`)
+    }
+  },
+  methods: {
+    parseDateTime: (dateTime) => DateUtil.parseDateTimeForDisplay(dateTime),
+    onEvalGood (e) {
+      this.talkTheme.goodCount++
+      alert('Good')
+    },
+    onEvalBad (e) {
+      this.talkTheme.badCount++
+      alert('Bad')
+    },
+    onShare (e) {
+      // TODO: SNSシェア用のモーダルを表示する
+      alert('share')
     }
   }
 }

@@ -1,6 +1,6 @@
 <template lang="html">
-  <div>
-    <b-container fluid >
+  <div id="recommendThemeViewPanel">
+    <b-container fluid>
       <b-row>
         <b-col>
           <p>あなたにおすすめのトークテーマ</p>
@@ -32,7 +32,7 @@ export default {
   },
   data () {
     return {
-      talkThemeList: [talkTheme1, talkTheme2, talkTheme1]
+      talkThemeList: [talkTheme1, talkTheme2]
     }
   }
 }
