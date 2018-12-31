@@ -1,12 +1,12 @@
 <template lang="html">
-  <div>
+  <div id="commentPanel">
     <!-- コメント投稿フォーム -->
     <b-form inline>
       <b-form-input v-model="inputComment"
                     type="text"
                     placeholder="コメント"
                     size="md"
-                    class="ml-2 w-75"></b-form-input>
+                    class="w-75"></b-form-input>
       <b-button @click="postComment"
                 :disabled="isActiveCommentBtn"
                 type="submit"
@@ -25,9 +25,6 @@ import CommentDto from '@/main/js/dto/CommentDto'
 import Comment from '@/main/js/components/Comment.vue'
 import DateUtil from '@/main/js/util/DateUtil'
 
-const commentDto1 = new CommentDto(1, '大友康弘', 'user_profile_sample.jpg', '楽しかった！', '201811111200')
-const commentDto2 = new CommentDto(2, '大友康弘', null, 'つまらなかった！', '201811111500')
-
 export default {
   name: 'CommentPanel',
   components: {
@@ -35,9 +32,13 @@ export default {
   },
   data () {
     return {
-      // TODO: propsで受け取る
-      commentList: [commentDto1, commentDto2],
       inputComment: ''
+    }
+  },
+  props: {
+    commentList: {
+      type: Array,
+      required: false
     }
   },
   methods: {

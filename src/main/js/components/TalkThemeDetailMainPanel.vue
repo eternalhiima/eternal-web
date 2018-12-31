@@ -26,9 +26,13 @@
           </b-col>
         </b-row>
         <hr>
-        <b-row class="mt-2">
-          <b-button @click="onEvalGood" variant="outline-primary" size="sm" class="mx-1">↑Good{{ talkTheme.goodCount }}</b-button>
-          <b-button @click="onEvalBad" variant="outline-danger" size="sm" class="mx-1">↓Bad{{ talkTheme.badCount }}</b-button>
+        <b-row class="ml-1 mt-1">
+          <b-button @click="onEvalGood" variant="outline-primary" size="sm" class="mx-1">
+            <font-awesome-icon icon="thumbs-up" class="mr-1"/>{{ talkTheme.goodCount }}
+          </b-button>
+          <b-button @click="onEvalBad" variant="outline-danger" size="sm" class="mx-1">
+            <font-awesome-icon icon="thumbs-down" class="mr-1"/>{{ talkTheme.badCount }}
+          </b-button>
           <b-button @click="onShare" variant="outline-secondary" size="sm" class="mx-1">共有</b-button>
         </b-row>
       </b-container>

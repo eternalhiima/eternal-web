@@ -1,54 +1,82 @@
 <template lang="html">
   <div id="talkTheme">
-    <b-container fluid >
-      <b-row class="mb-2">
-        <b-col md="3">
-          <b-row>
+    <!-- 概要表示 -->
+    <template v-if="isOverView">
+      <b-container fluid>
+        <b-row>
+          <b-col>
             <b-link :to="{name: 'TalkThemeDetail', params: {talkThemeId: talkTheme.id}}">
               <b-img-lazy :src="imgSrc" rounded left blank blank-color="#777" width="160" height="90" alt="Thumbnail" />
             </b-link>
-          </b-row>
-          <b-row>
-            <p class="hi-text-light">{{ talkTheme.postedUser }}</p>
-          </b-row>
-          <b-row>
-            <p class="hi-text-light">{{ parseDateTime(talkTheme.postedDateTime) }}</p>
-          </b-row>
-        </b-col>
-        <b-col md="9">
-          <b-row>
-            <b-col>
-              <b-link :to="{name: 'TalkThemeDetail', params: {talkThemeId: talkTheme.id}}" class="hi-text-subTitle">
+          </b-col>
+          <b-col>
+            <b-row>
+              <b-link :to="{name: 'TalkThemeDetail', params: {talkThemeId: talkTheme.id}}" class="hi-text-normal">
                 {{ talkTheme.title }}
               </b-link>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col>
-              <p class="hi-text-normal">{{ talkTheme.description}}</p>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col md="3">
-              <p class="text-primary hi-text-light">GOOD {{ talkTheme.goodCount }}</p>
-            </b-col>
-            <b-col md="3">
-              <p class="text-danger hi-text-light">BAD {{ talkTheme.badCount }}</p>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col>
+            </b-row>
+            <b-row>
+              <p class="hi-text-light">{{ talkTheme.postedUser }}</p>
+            </b-row>
+            <b-row>
               <p class="hi-text-light">トーク数 {{ talkTheme.talkedCount }}</p>
-            </b-col>
-          </b-row>
-          <b-row align-h="start">
-            <b-col md="3" align-self="start" v-for="category in talkTheme.categoryList" :key="category.id">
-              <category-tag :name="category.name"/>
-            </b-col>
-          </b-row>
-        </b-col>
-      </b-row>
-    </b-container>
+            </b-row>
+          </b-col>
+        </b-row>
+      </b-container>
+    </template>
+    <!-- 詳細表示 -->
+    <template v-else>
+      <b-container fluid>
+        <b-row class="mb-2">
+          <b-col md="3">
+            <b-row>
+              <b-link :to="{name: 'TalkThemeDetail', params: {talkThemeId: talkTheme.id}}">
+                <b-img-lazy :src="imgSrc" rounded left blank blank-color="#777" width="160" height="90" alt="Thumbnail" />
+              </b-link>
+            </b-row>
+            <b-row>
+              <p class="hi-text-light">{{ talkTheme.postedUser }}</p>
+            </b-row>
+            <b-row>
+              <p class="hi-text-light">{{ parseDateTime(talkTheme.postedDateTime) }}</p>
+            </b-row>
+          </b-col>
+          <b-col md="9">
+            <b-row>
+              <b-col>
+                <b-link :to="{name: 'TalkThemeDetail', params: {talkThemeId: talkTheme.id}}" class="hi-text-subTitle">
+                  {{ talkTheme.title }}
+                </b-link>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col>
+                <p class="hi-text-normal">{{ talkTheme.description}}</p>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col md="3">
+                <p class="text-primary hi-text-light">GOOD {{ talkTheme.goodCount }}</p>
+              </b-col>
+              <b-col md="3">
+                <p class="text-danger hi-text-light">BAD {{ talkTheme.badCount }}</p>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col>
+                <p class="hi-text-light">トーク数 {{ talkTheme.talkedCount }}</p>
+              </b-col>
+            </b-row>
+            <b-row align-h="start">
+              <b-col md="3" align-self="start" v-for="category in talkTheme.categoryList" :key="category.id">
+                <category-tag :name="category.name"/>
+              </b-col>
+            </b-row>
+          </b-col>
+        </b-row>
+      </b-container>
+    </template>
   </div>
 </template>
 
@@ -72,6 +100,11 @@ export default {
     talkTheme: {
       type: TalkThemeDto,
       required: false
+    },
+    isOverView: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   methods: {
