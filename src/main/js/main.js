@@ -4,9 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTag } from '@fortawesome/free-solid-svg-icons'
+import { faTag, faUserCircle, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
 // bootstrap-vue
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -15,6 +14,9 @@ Vue.use(BootstrapVue)
 
 // fontawesome
 library.add(faTag)
+library.add(faUserCircle)
+library.add(faThumbsUp)
+library.add(faThumbsDown)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
