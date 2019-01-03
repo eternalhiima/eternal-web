@@ -3,20 +3,23 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTag, faUserCircle, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 // bootstrap-vue
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import BootstrapVue from 'bootstrap-vue'
+// fontawesome
+import { library } from '@fortawesome/fontawesome-svg-core'
+// fas
+import { faTag, faUserCircle, faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
+// fab
+import { faTwitter, faFacebook, faInstagram, faLine } from '@fortawesome/free-brands-svg-icons'
+// far
+import { faCopy } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 Vue.use(BootstrapVue)
 
-// fontawesome
-library.add(faTag)
-library.add(faUserCircle)
-library.add(faThumbsUp)
-library.add(faThumbsDown)
+library.add(faTag, faUserCircle, faThumbsUp, faThumbsDown, faCopy, faTwitter, faFacebook, faInstagram, faLine)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false

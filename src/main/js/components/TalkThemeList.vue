@@ -18,8 +18,8 @@ export default {
   props: {
     title: {
       type: String,
-      default: null,
-      required: false
+      required: false,
+      default: null
     },
     talkThemeList: {
       type: Array,
