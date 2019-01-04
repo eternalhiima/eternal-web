@@ -1,7 +1,7 @@
 <template lang='html'>
   <div id='talkThemeList'>
     <h2 v-if="title !== null" class="hi-text-title my-1">{{ title }}</h2>
-    <ol v-for="talkTheme in talkThemeList" :key="talkTheme.id">
+    <ol v-for="talkTheme in talkThemeList" :key="talkTheme.id" class="p-0">
       <talk-theme :talkTheme="talkTheme" :isOverView="isOverView"/>
     </ol>
   </div>

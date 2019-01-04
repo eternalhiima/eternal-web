@@ -3,19 +3,26 @@
     <b-button @click="showSnsShareModal" :variant="variant" :size="size">
       {{ displayName }}
     </b-button>
+    <!-- SNS共有モーダル -->
     <b-modal ref="snsShareModal" hide-footer centered title="リンクの共有">
       <div>
         <div class="d-flex justify-content-center mb-2 p-2">
-          <font-awesome-icon :icon="['fab', 'twitter']" class="twitterIcon" />
-          <font-awesome-icon :icon="['fab', 'facebook']" class="fbIcon" />
-          <font-awesome-icon :icon="['fab', 'instagram']" class="instaIcon" />
-          <font-awesome-icon :icon="['fab', 'line']" class="LineIcon" />
+          <font-awesome-icon :icon="['fab', 'twitter']"
+                             @click="onShare('twitter')"
+                             class="twitterIcon" />
+          <font-awesome-icon :icon="['fab', 'facebook']"
+                             @click="onShare('facebook')"
+                             class="fbIcon" />
+          <font-awesome-icon :icon="['fab', 'instagram']"
+                             @click="onShare('instagram')"
+                             class="instaIcon" />
+          <font-awesome-icon :icon="['fab', 'line']"
+                             @click="onShare('line')"
+                            class="LineIcon" />
         </div>
-        <!-- URLが表示され、横のアイコンをクリックするとコピーできる
-             ref.) githubのリンクコピー -->
         <b-form inline class="m-2">
           <b-form-input id="shareUrlInput"
-                        v-model="shareUrl"
+                        v-model="currentUrl"
                         :readonly="true"
                         type="url"
                         size="sm"
@@ -32,11 +39,13 @@
 </template>
 
 <script>
+import LinkPageType from '@/main/js/type/LinkPageType'
+
 export default {
   name: 'sns-share-btn',
   data () {
     return {
-      shareUrl: location.href
+      currentUrl: location.href
     }
   },
   props: {
@@ -59,6 +68,11 @@ export default {
     showSnsShareModal () {
       this.$refs.snsShareModal.show()
     },
+    onShare (snsBrand) {
+      // TODO: currentUrlを遷移先のパラメータに渡せるようにする。
+      // 各サイトのAPIを確認する？
+      window.open(LinkPageType.getUrl(LinkPageType.get(snsBrand)))
+    },
     copyLink () {
       const target = document.getElementById('shareUrlInput')
       target.select()
@@ -70,33 +84,41 @@ export default {
 
 <style lang="less" scoped>
 @import "./../../../resources/static/less/base";
+
 .twitterIcon {
   .shareIcon;
-  background-color: #55acee;
+  background-color: @twitter-brand-color;
 }
 .fbIcon {
   .shareIcon;
-  background-color: #315096;
+  background-color: @fb-brand-color;
 }
 .instaIcon {
   .shareIcon;
-  background-color: #CF2E92;
+  background-color: @insta-brand-color;
 }
 .LineIcon {
   .shareIcon;
-  background-color: #00B900;
+  background-color: @line-brand-color;
 }
 .shareIcon {
   color: #fff;
   cursor: pointer;
   border-radius: 50%;
-  @media @pc {
+  margin: auto;
+  @media @pc, @tab {
     width: 72px;
     height: 72px;
-    margin: auto;
     padding: 16px;
     font-size: 1.6rem;
     line-height: 32px;
+  }
+  @media @app {
+    width: 64px;
+    height: 64px;
+    padding: 12px;
+    font-size: 1rem;
+    line-height: 40px;
   }
 }
 </style>
