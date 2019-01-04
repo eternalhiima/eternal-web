@@ -33,7 +33,7 @@
           <b-button @click="onEvalBad" variant="outline-danger" size="sm" class="mx-1">
             <font-awesome-icon icon="thumbs-down" class="mr-1"/>{{ talkTheme.badCount }}
           </b-button>
-          <b-button @click="onShare" variant="outline-secondary" size="sm" class="mx-1">共有</b-button>
+          <sns-share-btn :displayName="'共有'" :size="'sm'" class="mx-1" />
         </b-row>
       </b-container>
     </b-card>
@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import SnsShareBtn from '@/main/js/components/SnsShareButton.vue'
 import CategoryTag from '@/main/js/components/CategoryTag.vue'
 import TalkThemeDto from '@/main/js/dto/TalkThemeDto'
 import DateUtil from '@/main/js/util/DateUtil'
@@ -48,6 +49,7 @@ import DateUtil from '@/main/js/util/DateUtil'
 export default {
   name: 'TalkThemeDetailMainPanel',
   components: {
+    snsShareBtn: SnsShareBtn,
     categoryTag: CategoryTag
   },
   props: {
@@ -71,10 +73,6 @@ export default {
     onEvalBad (e) {
       this.talkTheme.badCount++
       alert('Bad')
-    },
-    onShare (e) {
-      // TODO: SNSシェア用のモーダルを表示する
-      alert('share')
     }
   }
 }

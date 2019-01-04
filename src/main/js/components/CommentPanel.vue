@@ -6,7 +6,7 @@
                     type="text"
                     placeholder="コメント"
                     size="md"
-                    class="w-75"></b-form-input>
+                    class="w-75" />
       <b-button @click="postComment"
                 :disabled="isActiveCommentBtn"
                 type="submit"
