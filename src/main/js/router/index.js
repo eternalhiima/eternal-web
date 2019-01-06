@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/main/js/pages/Home.vue'
 import Random from '@/main/js/pages/Random.vue'
 import Ranking from '@/main/js/pages/Ranking.vue'
+import SearchResult from '@/main/js/pages/SearchResult.vue'
 import TalkThemeDetail from '@/main/js/pages/TalkThemeDetail.vue'
 
 Vue.use(Router)
@@ -31,6 +32,14 @@ export default new Router({
       component: Ranking,
       meta: {
         title: 'hiima | ランキング'
+      }
+    },
+    {
+      path: '/searchResult',
+      name: 'SearchResult',
+      component: SearchResult,
+      meta: {
+        title: 'hiima | 検索画面'
       }
     },
     {

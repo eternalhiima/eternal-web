@@ -15,8 +15,8 @@
     <b-navbar-nav class="ml-auto">
 
 <!-- TODO:検索フォームの実装 -->
-      <b-nav-form>
-        <b-form-input size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
+      <b-nav-form v-on:submit.prevent="toSearchResult">
+        <b-form-input v-model="searchWord" size="sm" class="mr-sm-2" type="text" placeholder="Search"/>
         <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
       </b-nav-form>
 
@@ -37,7 +37,19 @@
 
 <script>
 export default {
-  name: 'global-header'
+  name: 'global-header',
+  data () {
+    return {
+      searchWord: ''
+    }
+  },
+  methods: {
+    toSearchResult () {
+      alert(this.searchWord)
+      // TODO::toにparamを追加する {name: 'searchResult', params: {xxx: xxx}}
+      // this.$router.push({name: 'SearchResult'})
+    }
+  }
 }
 </script>
 
