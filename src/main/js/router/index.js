@@ -35,11 +35,11 @@ export default new Router({
       }
     },
     {
-      path: '/searchResult',
+      path: '/search/:keyword',
       name: 'SearchResult',
       component: SearchResult,
       meta: {
-        title: 'hiima | 検索画面'
+        title: 'hiima | 検索結果'
       }
     },
     {
