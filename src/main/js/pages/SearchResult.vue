@@ -3,25 +3,25 @@
     <global-header />
     <b-container fluid>
       <b-row>
-        <b-col md="12" lg="3">
-          <search-condition-area class="ml-3 mt-2" />
+        <b-col md="12" lg="4">
+          <search-condition-panel :isSearchMode="true" class="ml-1 mt-2" />
         </b-col>
         <b-col md="12" lg="7">
           <talk-theme-list :talkThemeList="talkThemeList" class="mt-2"/>
         </b-col>
-        <b-col md="12" lg="2">
+        <b-col md="12" lg="1" class="bg-warning">
           <!-- TODO:広告エリア -->
-          <div class="ad"></div>
+          <div class="ad">広告</div>
         </b-col>
       </b-row>
     </b-container>
-    <post-talk></post-talk>
+    <post-talk />
   </div>
 </template>
 
 <script>
 import GlobalHeader from '@/main/js/components/Header.vue'
-import SearchConditionArea from '@/main/js/components/SearchConditionArea.vue'
+import SearchConditionPanel from '@/main/js/components/SearchConditionPanel.vue'
 import TalkThemeList from '@/main/js/components/TalkThemeList.vue'
 import PostTalk from '@/main/js/components/PostTalk.vue'
 import TalkThemeDto from '@/main/js/dto/TalkThemeDto'
@@ -40,7 +40,7 @@ export default {
   name: 'SearchResult',
   components: {
     globalHeader: GlobalHeader,
-    searchConditionArea: SearchConditionArea,
+    searchConditionPanel: SearchConditionPanel,
     talkThemeList: TalkThemeList,
     postTalk: PostTalk
   },
