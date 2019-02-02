@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     toSearchResult () {
-      this.$router.push({name: 'SearchResult', params: {keyword: this.keyword}})
+      this.$router.push({name: 'Search', params: {keyword: this.keyword}})
     }
   }
 }

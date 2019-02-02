@@ -12,12 +12,12 @@
         </b-row>
         <b-row>
           <b-col md="4" sm="6">
-            <p class="hi-text-light">{{ talkTheme.postedUser }}</p>
+            <p class="hi-text-light">{{ talkTheme.postUser }}</p>
           </b-col>
         </b-row>
         <b-row>
           <b-col md="4" sm="6">
-            <p class="hi-text-light">{{ parseDateTime(talkTheme.postedDateTime) }}</p>
+            <p class="hi-text-light">{{ parseDateTime(talkTheme.postDateTime) }}</p>
           </b-col>
         </b-row>
         <b-row>

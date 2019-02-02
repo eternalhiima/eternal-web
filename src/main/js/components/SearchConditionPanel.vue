@@ -1,12 +1,12 @@
 <template lang="html">
   <div id="searchConditionPanel" class="bg-light px-1 py-2">
-    <h3 class="p-1 m-1">ランキング検索</h3>
-    <p class="p-1 m-1">人気のトークテーマ</p>
+    <h3 class="p-1 mb-1">ランキング検索</h3>
+    <p class="p-1 m-0">人気のトークテーマ</p>
     <ul>
       <li>
         <!-- 総合ランキングは常にトップに表示 -->
         <!-- TODO: ランキングページのルーターにパラメータでどのランキングかを渡せるようにする -->
-        <b-link :to="{name: 'Ranking'}" class="listItem">
+        <b-link :to="{name: 'Ranking'}">
           総合ランキング
         </b-link>
       </li>
@@ -16,41 +16,28 @@
         </b-link>
       </li>
     </ul>
-
-    <b-container fluid>
-      <b-row class="my-1">
-        <b-col sm="12" md="2" lg="5" xl="3">
-          <p>カテゴリ：</p>
-        </b-col>
-        <b-col sm="12" md="10" lg="7" xl="9">
-          <incremental-search :placeholder="'カテゴリを選択'"
-                              :suggestData="categoryList" />
-        </b-col>
-      </b-row>
-      <b-row class="my-1" v-if="isSearchMode">
-        <b-col>
-          <b-form-input v-model="searchTextInput"
-                        type="text"
-                        placeholder="検索"
-                        size="sm"/>
-        </b-col>
-      </b-row>
-      <b-row class="my-1" v-if="isSearchMode">
-        <b-col>
-          <b-form-group>
-            <b-form-radio-group v-model="selectedSortType" stacked>
-              <b-form-radio value="1">高評価順</b-form-radio>
-              <b-form-radio value="2">投稿日順</b-form-radio>
-            </b-form-radio-group>
-          </b-form-group>
-        </b-col>
-      </b-row>
-      <b-row class="my-1">
-        <b-col md="3" offset-md="9">
-          <b-button variant="primary">表示</b-button>
-        </b-col>
-      </b-row>
-    </b-container>
+    <div class="mb-1">
+      <label for="categoryInput" class="categoryLabel">カテゴリ</label>
+      <incremental-search id="categoryInput"
+                          :placeholder="'カテゴリを選択'"
+                          :suggestData="categoryList"
+                          class="categoryInput" />
+    </div>
+    <b-form-input v-if="isSearchMode"
+                  v-model="searchTextInput"
+                  type="text"
+                  placeholder="検索"
+                  size="sm"
+                  class="mb-1 mr-1"/>
+    <b-form-group v-if="isSearchMode" class="ml-1 mb-1">
+      <b-form-radio-group v-model="selectedSortType" stacked>
+        <b-form-radio value="1">高評価順</b-form-radio>
+        <b-form-radio value="2">投稿日順</b-form-radio>
+      </b-form-radio-group>
+    </b-form-group>
+    <b-button variant="primary" class="float-right mb-1 mr-1">表示</b-button>
+    <!-- 以下はモバイルのデザインに使用している -->
+    <div class="clearfix"></div>
   </div>
 </template>
 
@@ -99,4 +86,18 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@import "./../../../resources/static/less/base";
+
+.categoryLabel {
+  @media @pc {
+    display: inline-block;
+    width:70px;
+  }
+}
+.categoryInput {
+  @media @pc {
+    display: inline-block;
+    width: 277.5px;
+  }
+}
 </style>
