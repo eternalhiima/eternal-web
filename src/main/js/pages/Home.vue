@@ -1,15 +1,11 @@
 <template lang="html">
   <div id="home">
-    <global-header/>
-    <trends-area :trendItemList="trendItemList"/>
-    <post-talk/>
+    <trends-panel :trendItemList="trendItemList"/>
   </div>
 </template>
 
 <script>
-import GlobalHeader from '@/main/js/components/Header.vue'
-import TrendsArea from '@/main/js/components/TrendsArea.vue'
-import PostTalk from '@/main/js/components/PostTalk.vue'
+import TrendsPanel from '@/main/js/components/TrendsPanel.vue'
 import TalkThemeDto from '@/main/js/dto/TalkThemeDto'
 
 // テストデータ
@@ -27,9 +23,7 @@ const talkTheme10 = new TalkThemeDto(10, 10, 'トークテーマ10')
 export default {
   name: 'Home',
   components: {
-    globalHeader: GlobalHeader,
-    trendsArea: TrendsArea,
-    postTalk: PostTalk
+    trendsPanel: TrendsPanel
   },
   data () {
     return {
