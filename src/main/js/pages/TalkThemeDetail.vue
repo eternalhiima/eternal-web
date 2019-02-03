@@ -1,6 +1,5 @@
 <template lang="html">
   <div id="tailThemeDetail">
-    <global-header/>
     <b-container fluid>
       <b-row lg="12" md="12" sm="12">
         <b-col>
@@ -16,16 +15,13 @@
         </b-col>
       </b-row>
     </b-container>
-    <post-talk/>
   </div>
 </template>
 
 <script>
-import GlobalHeader from '@/main/js/components/Header.vue'
 import TalkThemeDetailMainPanel from '@/main/js/components/TalkThemeDetailMainPanel.vue'
 import CommentPanel from '@/main/js/components/CommentPanel.vue'
 import TalkThemeList from '@/main/js/components/TalkThemeList.vue'
-import PostTalk from '@/main/js/components/PostTalk.vue'
 import TalkThemeDto from '@/main/js/dto/TalkThemeDto'
 import CommentDto from '@/main/js/dto/CommentDto'
 
@@ -46,8 +42,6 @@ const commentDto2 = new CommentDto(2, '大友康弘', null, 'つまらなかっ�
 export default {
   name: 'TalkThemeDetail',
   components: {
-    globalHeader: GlobalHeader,
-    postTalk: PostTalk,
     talkThemeDetailMainPanel: TalkThemeDetailMainPanel,
     commentPanel: CommentPanel,
     talkThemeList: TalkThemeList

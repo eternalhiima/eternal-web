@@ -1,29 +1,14 @@
 <template lang="html">
   <div id="ranking">
-    <global-header />
-    <b-container fluid>
-      <b-row>
-        <b-col md="12" lg="3">
-          <search-condition-area class="ml-3 mt-2" />
-        </b-col>
-        <b-col md="12" lg="7">
-          <talk-theme-list :talkThemeList="talkThemeList" class="mt-2"/>
-        </b-col>
-        <b-col md="12" lg="2">
-          <!-- TODO:広告エリア -->
-          <div class="ad"></div>
-        </b-col>
-      </b-row>
-    </b-container>
-    <post-talk></post-talk>
+    <search-condition-panel class="searchConditionPanel" />
+    <talk-theme-list :talkThemeList="talkThemeList" class="talkThemeList"/>
+    <!-- <div class="ad">広告</div> -->
   </div>
 </template>
 
 <script>
-import GlobalHeader from '@/main/js/components/Header.vue'
-import SearchConditionArea from '@/main/js/components/SearchConditionArea.vue'
+import SearchConditionPanel from '@/main/js/components/SearchConditionPanel.vue'
 import TalkThemeList from '@/main/js/components/TalkThemeList.vue'
-import PostTalk from '@/main/js/components/PostTalk.vue'
 import TalkThemeDto from '@/main/js/dto/TalkThemeDto'
 
 // テストデータの準備
@@ -39,10 +24,8 @@ const talkTheme8 = new TalkThemeDto(8, 8, 'タイトル8', 'hogehogehoge', 'thum
 export default {
   name: 'Ranking',
   components: {
-    globalHeader: GlobalHeader,
-    searchConditionArea: SearchConditionArea,
-    talkThemeList: TalkThemeList,
-    postTalk: PostTalk
+    searchConditionPanel: SearchConditionPanel,
+    talkThemeList: TalkThemeList
   },
   data () {
     return {
@@ -57,5 +40,33 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+@import "./../../../resources/static/less/base";
+
+.searchConditionPanel {
+  margin: 8px;
+  @media @app, @tab {
+    width: 100%;
+  }
+  @media @pc {
+    float: left;
+    width: 360px;
+    position: fixed;
+    top: 24;
+    left: 0;
+  }
+}
+.talkThemeList {
+  margin: 8px;
+  @media @app, @tab {
+    width: 100%;
+  }
+  @media @pc {
+    width: 100%;
+    float: right;
+    margin-left: -384px;
+    padding-left: 384px;
+    box-sizing: border-box;
+  }
+}
 </style>

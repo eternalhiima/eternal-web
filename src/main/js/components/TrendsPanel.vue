@@ -6,7 +6,6 @@
                   :trendData="trendItem"
                   :canvasWidth="width"
                   :canvasHeight="height" />
-
     </svg>
   </div>
 </template>
@@ -15,7 +14,7 @@
 import TrendItem from '@/main/js/components/TrendItem.vue'
 
 export default {
-  name: 'trends-area',
+  name: 'trends-panel',
   components: {
     trendItem: TrendItem
   },

@@ -16,10 +16,10 @@
               </b-link>
             </b-row>
             <b-row>
-              <p class="hi-text-light">{{ talkTheme.postedUser }}</p>
+              <p class="hi-text-light">{{ talkTheme.postUser }}</p>
             </b-row>
             <b-row>
-              <p class="hi-text-light">トーク数 {{ talkTheme.talkedCount }}</p>
+              <p class="hi-text-light">トーク数 {{ talkTheme.talkCount }}</p>
             </b-row>
           </b-col>
         </b-row>
@@ -36,10 +36,10 @@
               </b-link>
             </b-row>
             <b-row>
-              <p class="hi-text-light">{{ talkTheme.postedUser }}</p>
+              <p class="hi-text-light">{{ talkTheme.postUser }}</p>
             </b-row>
             <b-row>
-              <p class="hi-text-light">{{ parseDateTime(talkTheme.postedDateTime) }}</p>
+              <p class="hi-text-light">{{ parseDateTime(talkTheme.postDateTime) }}</p>
             </b-row>
           </b-col>
           <b-col md="9">
@@ -65,7 +65,7 @@
             </b-row>
             <b-row>
               <b-col>
-                <p class="hi-text-light">トーク数 {{ talkTheme.talkedCount }}</p>
+                <p class="hi-text-light">トーク数 {{ talkTheme.talkCount }}</p>
               </b-col>
             </b-row>
             <b-row align-h="start">
